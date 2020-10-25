@@ -1,7 +1,7 @@
 # RWA
 Este repositório terá a implementação de alguns algoritmos de WA
 
-# Lista de Algoritmos:
+### Lista de Algoritmos WA:
 1. Aleatório (Random)
 2. Prioridade Fixa (First-Fit) -> Tende a compactar carga nos λ’s
 3. Menos usado (Least-Used) -> Procura distribuir carga nos λ’s

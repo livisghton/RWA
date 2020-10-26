@@ -1,0 +1,38 @@
+
+{ "grafo" : {
+    "A" : { "B" : 1, "D":1, "F": 1 },
+    "B" : { "C":1, "D":1 },
+    "C" : { "D":1 },
+    "D" : { "C": 1, "F": 6 },
+    "E" : { "F": 7 },
+    "F" : { }
+    },
+    "request_list" : [
+        {
+            "id" : 1,
+            "source" :"A",
+            "destiny" : "D"
+        },
+        {
+            "id" : 2,
+            "source" :"A",
+            "destiny" : "C"
+        },
+        {
+            "id" : 3,
+            "source" :"B",
+            "destiny" : "D"
+        },
+        {
+            "id" : 4,
+            "source" :"B",
+            "destiny" : "C"
+        },
+        {
+            "id" : 5,
+            "source" :"F",
+            "destiny" : "B"
+        }
+    ]
+
+}

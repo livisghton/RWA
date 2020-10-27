@@ -33,7 +33,7 @@ class Lightpath():
         """
         Retorna o id do serviço que esta no lightpah.
         """
-        return serviceId
+        return self.serviceId
     
     def setPath(self, path):
         """
@@ -57,7 +57,7 @@ class Lightpath():
         """
         Retorna o comprimento de onda no lightpah.
         """
-        return waveLength
+        return self.waveLength
 
     def toString(self):
-        print("Id: %s, Serviço: %s, Caminho: %s, Lambda: %s." % (self.getId, self.getServiceId, self.getPath, self.getWaveLength))
+        print("Id: %s, Serviço: %s, Caminho: %s, Lambda: %s." % (self.getId(), self.getServiceId(), self.getPath(), self.getWaveLength() ))

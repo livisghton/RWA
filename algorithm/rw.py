@@ -4,7 +4,13 @@ import util.generation
 
 class Rw():
     def __init__(self):
-        self.numChannel = 80        #foi definido o número de canais como 80 apenas para teste.
+        self.setNumChannel(80)        #foi definido o número de canais como 80 apenas para teste.
+
+    def setNumChannel(self, numChannel):
+        self.numChannel = numChannel
+
+    def getNumChannel(self):
+        return self.numChannel
 
 
     def creatLsp(self, lspList, algorithm, service, path, lspId):
@@ -16,7 +22,9 @@ class Rw():
             lsp = self.random(lspList, service, path, lspId)
 
         elif(algorithm == "FF"):
-            print("executa o algoritmo Fist Firt")
+            # print("executa o algoritmo Fist Firt")
+            lsp = self.firstFit(lspList, service, path, lspId)
+
         elif(algorithm == "LU"):
             print("executa o algoritmo Least Used")
         elif(algorithm == "MU"):
@@ -49,7 +57,37 @@ class Rw():
 
         available = False
         while( not available ):
-            _lambda =  random.randint(0, self.numChannel)
+            _lambda =  random.randint(1, self.numChannel)
+
+            dic = {}
+            keyList = self.keyList(path)
+
+            if(lspList == []):
+                for j in keyList:
+                    dic.update({j: _lambda})
+                available = True
+            else:
+                if( self.lambdaAvailability(lspList, _lambda, keyList) ):
+                    for j in keyList:
+                        dic.update({j: _lambda})
+                    available = True
+                
+        lsp.setWaveLength(dic)
+        return lsp
+
+
+    def firstFit(self, lspList, service, path, lspId):
+        """
+        Este método implementa o algoritmo First Fit.
+        """
+
+        lsp = lightpath.Lightpath( lspId, service.getId(), path )
+
+        available = False
+        _lambda = 0
+
+        while( not available and _lambda < self.getNumChannel() ):
+            _lambda += 1
 
             dic = {}
             keyList = self.keyList(path)

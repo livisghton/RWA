@@ -1,5 +1,5 @@
 
-{   "metric": "RANDOM",
+{   "metric": "FIST_FIT",
     "grafo" : {
     "A" : { "B": 1, "C": 2 },
     "B" : { "A": 1, "D": 2, "E": 4 },

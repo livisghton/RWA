@@ -43,3 +43,6 @@ class Service():
         Retorna o destino do serviço
         """
         return self.destiny
+
+    def toString(self):
+        print("Serviço: %s, origem: %s, destino: %s :" % (self.getId(), self.getSource(), self.getDestiny()) )

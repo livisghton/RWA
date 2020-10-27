@@ -1,8 +1,7 @@
 class Lightpath():
     
-    id = 0
 
-    def __init__(self, serviceId, path):
+    def __init__(self, id, serviceId, path):
         """
         Cria uma estrutura do lightpah.
         """
@@ -60,5 +59,5 @@ class Lightpath():
         """
         return waveLength
 
-    def str(self):
+    def toString(self):
         print("Id: %s, Serviço: %s, Caminho: %s, Lambda: %s." % (self.getId, self.getServiceId, self.getPath, self.getWaveLength))

@@ -46,10 +46,11 @@ class Dijkstra():
             naoVisitados.remove(atual)
             del controle[atual]
 
-        print("A menor distância de %s atá %s é: %s" %
-              (origem, fim, distanciaAtual[fim][0]))
-        print("O menor caminho é: %s" %
-              self.printPath(distanciaAtual, origem, fim))
+        print("A menor distância de %s atá %s é: %s" % (origem, fim, distanciaAtual[fim][0]))
+        path = self.printPath(distanciaAtual, origem, fim)
+        print("O menor caminho é: %s" % path)
+        
+        return path
 
     # retorna a menor distancia de um dado nó para todos os outros possíveis.
     def dijkstra(self, origem):

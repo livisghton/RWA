@@ -20,17 +20,29 @@ def loadService(requestList):
     return serviceList
 
 
-def creatLsp(service, lspList, path, _algorithm, lspId):
+def creatLsp(service, lspList, path, _algorithm, lspId, useLambda):
     """
     Cria um lsp para o serviço, conforme a metrica escolhida.
     """
     lsp = None
 
     rw = algorithm.rw.Rw()
-    lsp = rw.creatLsp(lspList, _algorithm, service, path, lspId)
+    lsp = rw.creatLsp(lspList, _algorithm, service, path, lspId, useLambda)
 
-    
     return lsp
+
+def createVectorLambdaUse(numChannel=80):
+    """
+    Cria um dicionário para checar contabilizar os lambdas.
+    """
+    useLambda = {}
+
+    i = 1
+    while( i <= numChannel ):
+        useLambda.update({i: 0})
+        i += 1
+    
+    return useLambda
 
 
 def run():
@@ -54,12 +66,14 @@ def run():
     dj =  dijkstra.Dijkstra(data['grafo'])
     
     lspId = 0
+    useLambda = createVectorLambdaUse()      #armazena a utilização dos lambdas da rede.
+
     for s in serviceList:
         s.toString()
         
         path = dj.dijkstra_path(s.getSource() , s.getDestiny())
         
-        lsp = creatLsp(s, lspList, path, _algorithm, lspId)
+        lsp = creatLsp(s, lspList, path, _algorithm, lspId, useLambda)
         lspId += 1
         lsp.toString()
 

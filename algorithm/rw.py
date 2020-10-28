@@ -13,7 +13,10 @@ class Rw():
         return self.numChannel
 
 
-    def creatLsp(self, lspList, algorithm, service, path, lspId):
+    def creatLsp(self, lspList, algorithm, service, path, lspId, useLambda):
+        """
+        Cria um lsp conforme o algoritmo escolhido.
+        """
         
         lsp = None
 
@@ -105,6 +108,48 @@ class Rw():
         lsp.setWaveLength(dic)
         return lsp
 
+
+    def mostUsed(self, lspList, service, path, lspId, useLambda):
+        """
+        Este método implementa o algoritmo Most used.
+        """
+
+        lsp = lightpath.Lightpath( lspId, service.getId(), path )
+
+        available = False
+        while( not available ):
+
+            _lambda =  None
+
+            dic = {}
+            keyList = self.keyList(path)
+
+            if(lspList == []):      #escolhe um lambda aleatório.
+
+                _lambda =  random.randint(1, self.numChannel)
+
+                #contabiliza os lambdas nos links
+                for j in keyList:
+                    dic.update({j: _lambda})
+                
+                #contabiliza o numero global de utilização
+                for k in useLambda:
+                    if(k == _lambda):
+                        useLambda[k] = useLambda[k] + 1
+
+                available = True
+            else:
+                #TODO: falta implementar esse trecho
+                if( self.lambdaAvailability(lspList, _lambda, keyList) ):
+                    for j in keyList:
+                        dic.update({j: _lambda})
+                    available = True
+                
+        lsp.setWaveLength(dic)
+
+
+
+        return lsp
 
     def keyList(self, path):
         """
